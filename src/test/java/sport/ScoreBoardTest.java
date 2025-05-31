@@ -12,26 +12,28 @@ class ScoreBoardTest {
     void startMatch() {
         ScoreBoard board = new ScoreBoard();
         board.StartMatch("Mexico", "Canada");
-        assertEquals(0, board.Matches.get(0).homeScore);
-        assertEquals(0, board.Matches.get(0).awayScore);
+        assertEquals(0, board.matches.get(0).homeScore);
+        assertEquals(0, board.matches.get(0).awayScore);
     }
 
     @Test
+    @DisplayName("Update score")
     void updateScore() {
         ScoreBoard board = new ScoreBoard();
         board.StartMatch("Mexico", "Canada");
         board.UpdateScore(2,1,0);
-        assertEquals(2, board.Matches.get(0).homeScore);
-        assertEquals(1, board.Matches.get(0).awayScore);
+        assertEquals(2, board.matches.get(0).homeScore);
+        assertEquals(1, board.matches.get(0).awayScore);
     }
 
     @Test
+    @DisplayName("remove match from scoreboard")
     void finishMatch() {
         ScoreBoard board = new ScoreBoard();
         board.StartMatch("Mexico", "Canada");
         board.StartMatch("Spain", "Brazil");
         board.FinishMatch(0);
-        assertEquals("Spain",board.Matches.get(0).homeTeam);
+        assertEquals("Spain",board.matches.get(0).homeTeam);
 
     }
 

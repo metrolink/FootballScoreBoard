@@ -15,11 +15,14 @@ public class ScoreBoard {
         matches.add(game);
     }
     void UpdateScore(int home, int away, int match){
-        Match updatingMatch = matches.get(match);
-        updatingMatch.homeScore = home;
-        updatingMatch.awayScore = away;
+        Match updatedMatch = matches.get(match);
+        updatedMatch.homeScore = home;
+        updatedMatch.awayScore = away;
     }
-    void FinishMatch(int match){}
+    void FinishMatch(int match){
+        Match finishedMatch = matches.get(match);
+        matches.remove(finishedMatch);
+    }
     void Summary(){
     }
 }
