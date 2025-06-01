@@ -3,6 +3,8 @@ package sport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Vector;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScoreBoardTest {
@@ -39,5 +41,30 @@ class ScoreBoardTest {
 
     @Test
     void summary() {
+        ScoreBoard board = new ScoreBoard();
+        board.StartMatch("Mexico", "Canada");
+        board.StartMatch("Spain", "Brazil");
+        board.StartMatch("Germany", "France");
+        board.StartMatch("Uruguay", "Italy");
+        board.StartMatch("Argentina", "Australia");
+
+        board.UpdateScore(0,5,0);
+        board.UpdateScore(10,2,1);
+        board.UpdateScore(2,2,2);
+        board.UpdateScore(6,6,3);
+        board.UpdateScore(3,1,4);
+
+        board.Summary();
+
+        Vector<String> listOfMatches = new Vector<String>();
+        listOfMatches.add("Uruguay 6 - Italy 6");
+        listOfMatches.add("Spain 10 - Brazil 2");
+        listOfMatches.add("Mexico 0 - Canada 5");
+        listOfMatches.add("Argentina 3 - Australia 1");
+        listOfMatches.add("Germany 2 - France 2");
+
+        assertEquals(listOfMatches, board.Summary());
+
+
     }
 }
