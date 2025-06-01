@@ -34,12 +34,14 @@ class ScoreBoardTest {
         ScoreBoard board = new ScoreBoard();
         board.StartMatch("Mexico", "Canada");
         board.StartMatch("Spain", "Brazil");
+        Match secondMatch = board.matches.get(1);
         board.FinishMatch(0);
-        assertEquals("Spain",board.matches.get(0).homeTeam);
+        assertEquals(secondMatch,board.matches.get(0));
 
     }
 
     @Test
+    @DisplayName("Display matches")
     void summary() {
         ScoreBoard board = new ScoreBoard();
         board.StartMatch("Mexico", "Canada");

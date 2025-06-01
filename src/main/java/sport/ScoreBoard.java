@@ -7,18 +7,13 @@ public class ScoreBoard {
     Vector<Match> matches = new Vector<Match>();
 
     void StartMatch(String home, String away){
-        Match game = new Match();
-        game.homeScore = 0;
-        game.homeTeam = home;
-        game.awayScore = 0;
-        game.awayTeam = away;
+        Match game = new Match(home,away);
         matches.add(game);
     }
     Match UpdateScore(int home, int away, int matchNumber){
-        Match updatedMatch = matches.get(matchNumber);
-        updatedMatch.homeScore = home;
-        updatedMatch.awayScore = away;
-        return updatedMatch;
+        Match updateMatch = matches.get(matchNumber);
+        updateMatch.updateScore(home,away);
+        return updateMatch;
     }
     void FinishMatch(int matchNumber){
         Match finishedMatch = matches.get(matchNumber);
@@ -36,6 +31,7 @@ public class ScoreBoard {
 
     Vector<Match> matchSort(Vector<Match> listOfMatches){
 
+        //Selection sort
         int matchLength = listOfMatches.size();
 
         for (int i = 0; i < matchLength -1; i++){
