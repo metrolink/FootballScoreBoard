@@ -56,8 +56,6 @@ class ScoreBoardTest {
         board.UpdateScore(6,6,3);
         board.UpdateScore(3,1,4);
 
-        board.Summary();
-
         Vector<String> listOfMatches = new Vector<String>();
         listOfMatches.add("Uruguay 6 - Italy 6");
         listOfMatches.add("Spain 10 - Brazil 2");
