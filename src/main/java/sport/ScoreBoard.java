@@ -1,28 +1,27 @@
 package sport;
 
 import java.util.Vector;
-import sport.Match;
 
 public class ScoreBoard {
     Vector<Match> matches = new Vector<Match>();
 
-    void StartMatch(String home, String away) {
+    void startMatch(String home, String away) {
         Match game = new Match(home,away);
         matches.add(game);
     }
 
-    Match UpdateScore(int home, int away, int matchNumber) {
+    Match updateScore(int home, int away, int matchNumber) {
         Match updateMatch = matches.get(matchNumber);
         updateMatch.updateScore(home,away);
         return updateMatch;
     }
 
-    void FinishMatch(int matchNumber) {
+    void finishMatch(int matchNumber) {
         Match finishedMatch = matches.get(matchNumber);
         matches.remove(finishedMatch);
     }
 
-    Vector<String> Summary() {
+    Vector<String> summary() {
         Vector<Match> sortedMatches = matchSort(matches);
         Vector<String> listOfResults = new Vector<String>();
         for (Match m : sortedMatches) {
