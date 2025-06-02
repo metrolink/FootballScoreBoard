@@ -32,8 +32,7 @@ public class ScoreBoard {
         return listOfResults;
     }
 
-    Vector<Match> matchSort(Vector<Match> listOfMatches) {
-        Vector<Match> originalList = listOfMatches;
+    private Vector<Match> matchSort(Vector<Match> listOfMatches) {
         //Bubble sort
         int matchLength = listOfMatches.size();
         for (int i = 0; i < matchLength - 1; i++) {
@@ -49,17 +48,27 @@ public class ScoreBoard {
                 }
             }
         }
-        for(int i = 0; i < matchLength - 1; i++){
-            Match compareFirst = listOfMatches.get(i);
-            Match compareSecond = listOfMatches.get(i+1);
-            int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
-            int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
-            if (totalScoreFirst == totalScoreSecond) {
-                Match temp = listOfMatches.get(i);
-                listOfMatches.setElementAt(listOfMatches.get(i + 1),i);
-                listOfMatches.setElementAt(temp, i+1);
-            }
-        }
+        sortByStartTime(listOfMatches);
         return listOfMatches;
     }
+
+    private Vector<Match> sortByStartTime(Vector<Match> matchList){
+        Vector<Match> originalList = matchList;
+        //Bubble sort
+        int matchLength = matchList.size();
+        for(int i = 0; i < matchLength - 1; i++){
+            Match compareFirst = matchList.get(i);
+            Match compareSecond = matchList.get(i+1);
+            int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
+            int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
+            if (    totalScoreFirst == totalScoreSecond &&
+                    originalList.indexOf(compareFirst) < originalList.indexOf(compareSecond)) {
+                Match temp = matchList.get(i);
+                matchList.setElementAt(matchList.get(i + 1),i);
+                matchList.setElementAt(temp, i+1);
+            }
+        }
+        return matchList;
+    }
 }
+
