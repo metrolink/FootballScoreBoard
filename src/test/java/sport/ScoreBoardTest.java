@@ -56,6 +56,8 @@ class ScoreBoardTest {
         board.updateScore(6,6,3);
         board.updateScore(3,1,4);
 
+        Vector<String> orderedMatches = board.summary();
+
         Vector<String> listOfMatches = new Vector<String>();
         listOfMatches.add("Uruguay 6 - Italy 6");
         listOfMatches.add("Spain 10 - Brazil 2");
@@ -63,7 +65,7 @@ class ScoreBoardTest {
         listOfMatches.add("Argentina 3 - Australia 1");
         listOfMatches.add("Germany 2 - France 2");
 
-        assertEquals(listOfMatches, board.summary());
+        assertEquals(listOfMatches, orderedMatches);
 
 
     }

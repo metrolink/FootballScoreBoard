@@ -22,7 +22,8 @@ public class ScoreBoard {
     }
 
     Vector<String> summary() {
-        Vector<Match> sortedMatches = matchSort(matches);
+        Vector<Match> currentMatches = matches;
+        Vector<Match> sortedMatches = matchSort(currentMatches);
         Vector<String> listOfResults = new Vector<String>();
         for (Match m : sortedMatches) {
             String result = m.homeTeam + " " + m.homeScore + " - " + m.awayTeam + " " + m.awayScore;
@@ -32,6 +33,7 @@ public class ScoreBoard {
     }
 
     private Vector<Match> matchSort(Vector<Match> listOfMatches) {
+        Vector<Match> preOrderedList = listOfMatches;
         //Bubble sort
         int matchLength = listOfMatches.size();
         for (int i = 0; i < matchLength - 1; i++) {
@@ -40,33 +42,27 @@ public class ScoreBoard {
                 Match compareSecond = listOfMatches.get(j+1);
                 int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
                 int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
-                if (totalScoreFirst < totalScoreSecond) {
-                    Match temp = listOfMatches.get(j);
-                    listOfMatches.setElementAt(listOfMatches.get(j + 1),j);
-                    listOfMatches.setElementAt(temp, j+1);
+                if (totalScoreFirst <= totalScoreSecond) {
+                    listOfMatches.setElementAt(compareSecond,j);
+                    listOfMatches.setElementAt(compareFirst, j+1);
                 }
             }
         }
-        sortByStartTime(listOfMatches);
+
+        sortFirst(listOfMatches, preOrderedList);
         return listOfMatches;
     }
 
-    private Vector<Match> sortByStartTime(Vector<Match> matchList){
-        Vector<Match> originalList = matchList;
-        //Bubble sort
-        int matchLength = matchList.size();
-        for(int i = 0; i < matchLength - 1; i++){
-            Match compareFirst = matchList.get(i);
-            Match compareSecond = matchList.get(i+1);
+    private Vector<Match> sortFirst(Vector<Match> matchList, Vector<Match> originalList){
+            Match compareFirst = matchList.get(0);
+            Match compareSecond = matchList.get(1);
             int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
             int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
             if (    totalScoreFirst == totalScoreSecond &&
                     originalList.indexOf(compareFirst) < originalList.indexOf(compareSecond)) {
-                Match temp = matchList.get(i);
-                matchList.setElementAt(matchList.get(i + 1),i);
-                matchList.setElementAt(temp, i+1);
+                matchList.setElementAt(compareSecond,0);
+                matchList.setElementAt(compareFirst, 1);
             }
-        }
         return matchList;
     }
 }
