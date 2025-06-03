@@ -14,8 +14,8 @@ class ScoreBoardTest {
     void startMatch() {
         ScoreBoard board = new ScoreBoard();
         board.startMatch("Mexico", "Canada");
-        assertEquals(0, board.matches.get(0).homeScore);
-        assertEquals(0, board.matches.get(0).awayScore);
+        assertEquals(0, board.matches.get(0).getHomeScore());
+        assertEquals(0, board.matches.get(0).getAwayScore());
     }
 
     @Test
@@ -24,8 +24,8 @@ class ScoreBoardTest {
         ScoreBoard board = new ScoreBoard();
         board.startMatch("Mexico", "Canada");
         board.updateScore(2,1,0);
-        assertEquals(2, board.matches.get(0).homeScore);
-        assertEquals(1, board.matches.get(0).awayScore);
+        assertEquals(2, board.matches.get(0).getHomeScore());
+        assertEquals(1, board.matches.get(0).getAwayScore());
     }
 
     @Test

@@ -1,31 +1,52 @@
 package sport;
 
 public class Match {
-    String homeTeam;
-    int homeScore;
-    String awayTeam;
-    int awayScore;
+    private String homeTeam;
+    private int homeScore;
+    private String awayTeam;
+    private int awayScore;
 
     public Match(){
 
     }
 
     public Match(String home, String away){
-        homeTeam = home;
-        homeScore = 0;
-        awayTeam = away;
-        awayScore = 0;
+        this.homeTeam = home;
+        this.homeScore = 0;
+        this.awayTeam = away;
+        this.awayScore = 0;
     }
 
     public Match(String hTeam, int hScore, String aTeam, int aScore){
-        homeTeam = hTeam;
-        homeScore = hScore;
-        awayTeam = aTeam;
-        awayScore = aScore;
+        this.homeTeam = hTeam;
+        this.homeScore = hScore;
+        this.awayTeam = aTeam;
+        this.awayScore = aScore;
     }
 
-    void updateScore(int home, int away){
-        homeScore = home;
-        awayScore = away;
+    public String getHomeTeam() {
+        return homeTeam;
     }
+
+    public int getHomeScore() {
+        return homeScore;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
+    public int getAwayScore() {
+        return awayScore;
+    }
+
+    public void setHomeScore(int homeScore) {
+        this.homeScore = homeScore;
+    }
+
+    public void setAwayScore(int awayScore) {
+        this.awayScore = awayScore;
+    }
+
+
 }

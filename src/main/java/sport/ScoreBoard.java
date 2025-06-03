@@ -12,7 +12,8 @@ public class ScoreBoard {
 
     Match updateScore(int home, int away, int matchNumber) {
         Match updateMatch = matches.get(matchNumber);
-        updateMatch.updateScore(home,away);
+        updateMatch.setHomeScore(home);
+        updateMatch.setAwayScore(away);
         return updateMatch;
     }
 
@@ -26,7 +27,7 @@ public class ScoreBoard {
         Vector<Match> sortedMatches = matchSort(currentMatches);
         Vector<String> listOfResults = new Vector<String>();
         for (Match m : sortedMatches) {
-            String result = m.homeTeam + " " + m.homeScore + " - " + m.awayTeam + " " + m.awayScore;
+            String result = m.getHomeTeam() + " " + m.getHomeScore() + " - " + m.getAwayTeam() + " " + m.getAwayScore();
             listOfResults.add(result);
         }
         return listOfResults;
@@ -40,8 +41,8 @@ public class ScoreBoard {
             for (int j = 0; j < matchLength - i - 1; j++) {
                 Match compareFirst = listOfMatches.get(j);
                 Match compareSecond = listOfMatches.get(j+1);
-                int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
-                int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
+                int totalScoreFirst = compareFirst.getHomeScore() + compareFirst.getAwayScore();
+                int totalScoreSecond = compareSecond.getHomeScore() + compareSecond.getAwayScore();
                 if (totalScoreFirst <= totalScoreSecond) {
                     listOfMatches.setElementAt(compareSecond,j);
                     listOfMatches.setElementAt(compareFirst, j+1);
@@ -56,8 +57,8 @@ public class ScoreBoard {
     private Vector<Match> sortFirst(Vector<Match> matchList, Vector<Match> originalList){
             Match compareFirst = matchList.get(0);
             Match compareSecond = matchList.get(1);
-            int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
-            int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
+            int totalScoreFirst = compareFirst.getHomeScore() + compareFirst.getAwayScore();
+            int totalScoreSecond = compareSecond.getHomeScore() + compareSecond.getAwayScore();
             if (    totalScoreFirst == totalScoreSecond &&
                     originalList.indexOf(compareFirst) < originalList.indexOf(compareSecond))
             {
