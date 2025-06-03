@@ -22,7 +22,7 @@ public class ScoreBoard {
     }
 
     Vector<String> summary() {
-        Vector<Match> currentMatches = matches;
+        Vector<Match> currentMatches = new Vector<Match>(matches);
         Vector<Match> sortedMatches = matchSort(currentMatches);
         Vector<String> listOfResults = new Vector<String>();
         for (Match m : sortedMatches) {
@@ -33,7 +33,7 @@ public class ScoreBoard {
     }
 
     private Vector<Match> matchSort(Vector<Match> listOfMatches) {
-        Vector<Match> preOrderedList = listOfMatches;
+        Vector<Match> preOrderedList = new Vector<Match>(listOfMatches);
         //Bubble sort
         int matchLength = listOfMatches.size();
         for (int i = 0; i < matchLength - 1; i++) {
@@ -59,9 +59,10 @@ public class ScoreBoard {
             int totalScoreFirst = compareFirst.homeScore + compareFirst.awayScore;
             int totalScoreSecond = compareSecond.homeScore + compareSecond.awayScore;
             if (    totalScoreFirst == totalScoreSecond &&
-                    originalList.indexOf(compareFirst) < originalList.indexOf(compareSecond)) {
-                matchList.setElementAt(compareSecond,0);
-                matchList.setElementAt(compareFirst, 1);
+                    originalList.indexOf(compareFirst) < originalList.indexOf(compareSecond))
+            {
+                        matchList.setElementAt(compareSecond,0);
+                        matchList.setElementAt(compareFirst, 1);
             }
         return matchList;
     }
